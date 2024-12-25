@@ -8,7 +8,7 @@ class Produkty {
         $this->baza = new Database();
     }
 
-    public function dodaj_produkt($nazwa, $opis, $cena, $stan, $kategoria_id) {
+    public function add_product($nazwa, $opis, $cena, $stan, $kategoria_id) {
         $zapytanie = "INSERT INTO produkty (nazwa, opis, cena, stan_magazynowy, kategoria_id) VALUES (?, ?, ?, ?, ?)";
         
         try {
@@ -19,7 +19,7 @@ class Produkty {
         }
     }
 
-    public function get_mulitiple_products() {
+    public function get_multiple_products() {
         $zapytanie = "SELECT p.*, k.nazwa AS kategoria FROM produkty p JOIN kategorie k ON p.kategoria_id = k.id";
         return $this->baza->execute_query($zapytanie);
     }
