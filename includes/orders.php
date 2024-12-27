@@ -1,6 +1,6 @@
 <?php
-require_once 'baza_danych.php';
-require_once 'produkty.php';
+require_once '../config/database.php';
+require_once '../includes/products.php';
 
 class Zamowienia {
     private $baza;
