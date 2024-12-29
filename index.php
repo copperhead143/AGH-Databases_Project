@@ -41,7 +41,7 @@ $products = $products_manager->get_multiple_products();
                 <th>Akcje</th>
             <?php endif; ?>
         </tr>
-        <?php while ($produkt = $produkty->fetch_assoc()): ?>
+        <?php while ($produkt = $products->fetch_assoc()): ?>
             <tr>
                 <td><?php echo htmlspecialchars($produkt['nazwa']); ?></td>
                 <td><?php echo htmlspecialchars($produkt['kategoria']); ?></td>
