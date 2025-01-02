@@ -1,7 +1,7 @@
 <?php
-require_once 'autoryzacja.php';
+require_once ("../includes\auth.php");
 
 authentication::wyloguj();
-header("Location: index.php");
+header("Location: ../index.php");
 exit();
 ?>

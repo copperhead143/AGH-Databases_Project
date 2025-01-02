@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once '../config/database.php';
-require_once '../includes/auth.php';
-require_once '../includes/products.php';
-require_once '../includes/orders.php';
+require_once ("config\database.php");
+require_once ("includes\auth.php");
+require_once ("../includes\products.php");
+require_once ("../includes/orders.php");
 
 
 if (!authentication::czy_admin()) {

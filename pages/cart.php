@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ];
         }
 
-        header("Location: koszyk.php");
+        header("Location: cart.php");
         exit();
     }
 }

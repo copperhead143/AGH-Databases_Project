@@ -1,6 +1,6 @@
 <?php
 
-require_once '../config/database.php';
+require_once __DIR__ . '/../config/database.php';
 
 class authentication {
     private $baza;
@@ -13,12 +13,12 @@ class authentication {
     
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-        $query = "INSERT INTO uzytkownicy (login, password, email, name, surname) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO uzytkownicy (login, haslo, email, imie, nazwisko) VALUES (?, ?, ?, ?, ?)";
 
         try {
             $this->baza->execute_query($query, array($login, $hashed_password, $email, $name, $surname));
             return true;
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             return false;
         }
     }
@@ -28,7 +28,7 @@ class authentication {
         $result = $this->baza->execute_query($query, array($login));
 
         if($user = $result->fetch_assoc()){
-            if(password_verify($password, $user["password"])){
+            if(password_verify($password, $user["haslo"])){
                 session_start();
                 $_SESSION['zalogowany'] = true;
                 $_SESSION['user_id'] = $user['id'];

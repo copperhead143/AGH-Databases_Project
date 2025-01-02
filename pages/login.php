@@ -1,5 +1,5 @@
 <?php
-require_once("../includes/auth.php");
+require_once("../includes\auth.php");
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $autoryzacja = new authentication();
@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $haslo = $_POST['haslo'];
 
     if($autoryzacja->login($login, $haslo)){
-        header("Location: index.php");
+        header("Location: ../index.php");
         exit();
     }else{ 
         $blad = "Błędne dane logowania";
@@ -36,6 +36,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <input type="submit" value="Zaloguj się">
     </form>
 
-    <p>Nie masz konta? <a href="rejestracja.php">Zarejestruj się</a></p>
+    <p>Nie masz konta? <a href="registration.php">Zarejestruj się</a></p>
 </body>
 </html>

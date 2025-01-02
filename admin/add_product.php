@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once 'autoryzacja.php';
-require_once 'produkty.php';
+require_once ("../includes\auth.php");
+require_once ("../includes\products.php");
 
 if (!authentication::czy_admin()) {
     header("Location: index.php");

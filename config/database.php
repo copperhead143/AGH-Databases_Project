@@ -23,12 +23,21 @@ class Database{
     public function execute_query($query, $params = array()) {
         $stmt = $this->conn->prepare($query);
 
-        if($params){
-            $types = str_repeat('s', count($params));
-            $stmt->bind_param($types, ...$params);
+        if ($stmt === false) {
+            die("Failed to prepare statement: " . $this->conn->error . " - Query: " . $query);
         }
 
-        $stmt->execute();
+        if($params){
+            $types = str_repeat('s', count($params));
+            if (!$stmt->bind_param($types, ...$params)) {
+                die("Failed to bind parameters: " . $stmt->error);
+            }
+        }
+
+        if (!$stmt->execute()) {
+            die("Failed to execute statement: " . $stmt->error);
+        }
+
         return $stmt->get_result();
     }
 
@@ -38,3 +47,4 @@ class Database{
         }
     }
 }
+?>

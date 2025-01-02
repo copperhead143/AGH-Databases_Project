@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'includes/orders.php';
+require_once 'config/database.php';
 require_once 'includes/auth.php';
 require_once 'includes/products.php';
 
@@ -20,12 +20,12 @@ $products = $products_manager->get_multiple_products();
 
     <?php if(!authentication::czy_zalogowany()): ?>
         <p>
-            <a href="login.php">Zaloguj się</a>
-            <a href="registration.php">Zarejestruj się</a>
+            <a href="pages\login.php">Zaloguj się</a>
+            <a href="pages\registration.php">Zarejestruj się</a>
         </p>
     <?php else: ?>
         <p>
-            <?php echo "Witaj, " . $_SESSION['user_id']; ?> | <a href="logout.php">Wyloguj się</a>
+            <?php echo "Witaj, " . $_SESSION['user_id']; ?> | <a href="pages\logut.php">Wyloguj się</a>
         </p>
     <?php endif; ?>
 
@@ -49,7 +49,7 @@ $products = $products_manager->get_multiple_products();
                 <td><?php echo $produkt['stan_magazynowy']; ?></td>
                 <?php if (authentication::czy_zalogowany()): ?>
                     <td>
-                        <form action="dodaj_do_koszyka.php" method="post">
+                        <form action="pages/cart.php" method="post">
                             <input type="hidden" name="produkt_id" value="<?php echo $produkt['id']; ?>">
                             <input type="number" name="ilosc" value="1" min="1" max="<?php echo $produkt['stan_magazynowy']; ?>">
                             <input type="submit" value="Dodaj do koszyka">
@@ -63,7 +63,8 @@ $products = $products_manager->get_multiple_products();
     <?php if (authentication::czy_admin()): ?>
         <h2>Panel Administracyjny</h2>
         <ul>
-            <li><a href="dodaj_produkt.php">Dodaj produkt</a></li>
+            <li><a href="admin/add_product.php">Dodaj produkt</a></li>
+            <li><a href="admin/index.php">Dodaj kategorię</a></li>
         </ul>
     <?php endif; ?>
 </body>
